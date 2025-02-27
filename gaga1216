@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<body style="background: #0d1117; color: #fff; text-align: center; padding: 50px;">
+    <div id="console">
+        <pre id="output"></pre>
+        <div id="input" style="margin-top: 20px;">
+            <span style="color: #569cd6;">></span>
+            <input type="text" id="command" placeholder="输入 'git commit -m ‘哥哥我想你了'' 查看秘密..." 
+                   style="background: transparent; border: none; color: #fff; outline: none;">
+        </div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        const commandInput = document.getElementById('command');
+
+        output.innerHTML = `$ npm start missing-you.js\n\n> missing-you@1.0.0 start\n> node "你的心跳频率"\n\n`;
+
+        commandInput.addEventListener('keyup', (e) => {
+            if (e.key === 'Enter') {
+                if (commandInput.value === 'git commit -m “哥哥我想你了"') {
+                    output.innerHTML += '\n🚀 正在部署思念协议...\n';
+                    setTimeout(() => {
+                        output.innerHTML += '❤️❤️❤️ 思念注入成功！\n';
+                        output.innerHTML += '💌 来自女朋友的密文：0x69206C6F76652079 0x6F75206D6F726520\n';
+                        startHearts();
+                    }, 1000);
+                } else {
+                    output.innerHTML += `\n❌ 命令无效：思念参数格式错误\n`;
+                }
+                commandInput.value = '';
+            }
+        });
+
+        function startHearts() {
+            const colors = ['#ff79c6', '#bd93f9', '#ff5555'];
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.style = `position: fixed; 
+                              left: ${Math.random() * 100}%; 
+                              color: ${colors[Math.floor(Math.random()*3)]};
+                              font-size: 24px;
+                              animation: float 3s ease-out`;
+                heart.innerHTML = '❤';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }, 300);
+        }
+    </script>
+</body>
+</html>
